@@ -1,1 +1,0 @@
-//leetcode: Majority Element Solution
