@@ -67,8 +67,8 @@ public class Solution {
 
     private string DiagCheck(string[][] map)
     {
-        if(map[0][0] == map[1][1] && map[1][1]  == map[2][2]) return map[1][1];
-        if(map[0][2] == map[1][1] && map[1][1]  == map[2][0]) return map[1][1];
+        if(map[0][0] == map[1][1] && map[1][1] == map[2][2] && map[1][1] != "") return map[1][1];
+        if(map[0][2] == map[1][1] && map[1][1] == map[2][0] && map[1][1] != "") return map[1][1];
         
         return "Draw";
     }
