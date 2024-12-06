@@ -1,7 +1,7 @@
 //leetcode 206: Reverse Linked List
 
 
- //Definition for singly-linked list.
+//Definition for singly-linked list.
 public class ListNode {
     public int val;
     public ListNode next;
@@ -10,7 +10,6 @@ public class ListNode {
         this.next = next;
     }
 }
- 
  
 public class Solution {
     public ListNode ReverseList(ListNode head) {
