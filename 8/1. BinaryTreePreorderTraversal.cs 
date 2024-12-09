@@ -1,0 +1,73 @@
+// leetcode 144: Binary Tree Preorder Traversal
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ 
+public class Solution {
+    public IList<int> PreorderTraversal(TreeNode root) {
+        //My original solution
+
+        IList<int> arr = [];
+        TreeNode node = root;
+        Dictionary<TreeNode, string> nodeDict = []; //tracking
+
+        while(true)
+        {
+            if(root == null) break;
+
+            if(node != null && !nodeDict.ContainsKey(node))
+            {
+                nodeDict.Add(node, "left");
+                arr.Add(node.val);
+            }
+
+            if(node.left != null) 
+            {
+                node = node.left;
+            }
+            else if(node.right != null)
+            {
+                //change to the right
+                nodeDict[node] = "right";
+                node = node.right;
+            }
+            else
+            {
+                //remove current node from track
+                nodeDict.Remove(node);
+
+                //finisih the loop when the track is empty again
+                if(!nodeDict.Any()) break;
+
+                //get the last node in the track
+                foreach(var ele in nodeDict)
+                {
+                    node = ele.Key;
+                }
+
+                //remove the node with no children
+                if(nodeDict[node] == "left")
+                {
+                    node.left = null;
+                }
+                else
+                {
+                    node.right = null;
+                }
+            }
+        }
+
+        return arr;
+    }
+}
