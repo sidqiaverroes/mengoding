@@ -47,7 +47,7 @@ public class Solution {
                 //remove current node from track
                 nodeDict.Remove(node);
 
-                //finisih the loop when the track is empty again
+                //finish the loop when the track is empty again
                 if(!nodeDict.Any()) break;
 
                 //get the last node in the track
