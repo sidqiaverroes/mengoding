@@ -12,7 +12,53 @@ public class Solution {
 
         return false;
 
-        //we can use another approach: dictionary and sliding window, try to use that next
-        //this is a go to algortihm "brute force" lol.
+    }
+
+    //Dictionary approach
+    public bool ContainsNearbyDuplicate2(int[] nums, int k) {
+        Dictionary<int, int> dict = []; //map nums and last index
+        
+        int index = 0;
+        foreach(var n in nums)
+        {
+            if(!dict.ContainsKey(n))
+            {
+                dict.Add(n, index);
+            }
+            else
+            {
+                if((index - dict[n]) <= k) return true;
+                dict[n] = index;
+            }
+
+            index++;
+        }
+
+        return false;
+    }
+
+    //Sliding window approach
+    public bool ContainsNearbyDuplicate3(int[] nums, int k) {
+        HashSet<int> set = []; //map nums and last index
+        
+        int index = 0;
+        foreach(var n in nums)
+        {
+            if(set.Contains(n))
+            {
+                return true;
+            }
+
+            set.Add(n);
+
+            if(set.Count > k)
+            {
+                set.Remove(nums[index-k]);
+            }
+
+            index++;
+        }
+
+        return false;
     }
 }
