@@ -1,0 +1,162 @@
+//leetcode 1971. Find if Path Exists in Graph
+
+public class Solution {
+    // public bool ValidPath(int n, int[][] edges, int source, int destination) {
+    //     if(n == 1)
+    //     {
+    //         if(source == 0 && destination == 0) return true;
+    //     }
+
+    //     bool res = false;
+
+    //     res = res || FindPath(edges, source, destination);
+
+    //     return res;
+    // }
+
+    // private bool FindPath(int[][] edges, int source, int destination)
+    // {
+    //     if(edges.Length == 0) return false;
+    //     bool res = false;
+
+    //     foreach(var edge in edges)
+    //     {
+    //         if(edge[0] < 0 || edge[1] < 0) continue;
+
+    //         int x = edge[0];
+    //         int y = edge[1];
+    //         if(x == source)
+    //         {
+    //             if(y == destination) return true;
+    //             else
+    //             {
+    //                 edge[1] = -1;
+    //                 res = res || FindPath(edges, y, destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //         else if(y == source)
+    //         {
+    //             if(x == destination) return true;
+    //             else
+    //             {
+    //                 edge[0] = -1;
+    //                 res = res || FindPath(edges, x, destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //     }
+
+    //     return res;
+    // }
+
+    public bool ValidPath(int n, int[][] edges, int source, int destination) {
+        if(source == destination) return true;
+
+        // 1. Build adjacency list from edges.
+        Dictionary<int, HashSet<int>> dict = BuildAdjacencyList(edges);
+        
+        // 2. Initialize a stack with the `source` node.
+        Stack<int> stack = new Stack<int>();
+        stack.Push(source);
+
+        // 3. Initialize a visited set to track visited nodes.
+        HashSet<int> visited = [];
+        visited.Add(source);
+
+        // 4. While the stack is not empty:
+        //     - Pop a node.
+        //     - If the node is the `destination`, return `true`.
+        //     - Otherwise, add all unvisited neighbors to the stack and mark them as visited.
+        while(stack.Count > 0)
+        {
+            int currentNode = stack.Pop();
+            if(currentNode == destination) return true;
+            else
+            {
+                foreach(var d in dict[currentNode])
+                {
+                    if(!visited.Contains(d))
+                    {
+                        stack.Push(d);
+                        visited.Add(d);
+                    }
+                }
+            }
+        }
+
+        // 5. If the loop ends without finding the destination, return `false`.
+        return false;
+    }
+
+    private Dictionary<int, HashSet<int>> BuildAdjacencyList(int[][] edges)
+    {
+        Dictionary<int, HashSet<int>> dict = [];
+
+        foreach (var edge in edges) {
+            int x = edge[0], y = edge[1];
+
+            // Add both directions for undirected graph
+            if (!dict.ContainsKey(x)) {
+                dict[x] = new HashSet<int>();
+            }
+            dict[x].Add(y);
+
+            if (!dict.ContainsKey(y)) {
+                dict[y] = new HashSet<int>();
+            }
+            dict[y].Add(x);
+        }
+
+        return dict;
+    }
+
+    // public bool ValidPath(int n, int[][] edges, int source, int destination) {
+    //     if(n == 1)
+    //     {
+    //         if(source == 0 && destination == 0) return true;
+    //     }
+
+    //     bool res = false;
+
+    //     res = res || FindPath(edges, source, destination);
+
+    //     return res;
+    // }
+
+    // private bool FindPath(int[][] edges, int source, int destination)
+    // {
+    //     if(edges.Length == 0) return false;
+    //     bool res = false;
+    //     List<int[]> list = new List<int[]>(edges);
+    //     int index = 0;
+    //     foreach(var edge in edges)
+    //     {
+    //         if(edge[0] == source)
+    //         {
+    //             list.RemoveAt(index);
+    //             index--;
+    //             if(edge[1] == destination) return true;
+    //             else
+    //             {
+    //                 res = res || FindPath(list.ToArray(), edge[1], destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //         else if(edge[1] == source)
+    //         {
+    //             list.RemoveAt(index);
+    //             index--;
+    //             if(edge[0] == destination) return true;
+    //             else
+    //             {
+    //                 res = res || FindPath(list.ToArray(), edge[0], destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //         index++;
+    //     }
+
+    //     return res;
+    // }
+}
