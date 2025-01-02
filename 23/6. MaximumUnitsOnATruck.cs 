@@ -1,0 +1,26 @@
+//leetcode 1710. Maximum Units on a Truck
+
+public class Solution {
+    public int MaximumUnits(int[][] boxTypes, int truckSize) {
+        List<int[]> boxList = new List<int[]>(boxTypes);
+
+        boxList = boxList.OrderByDescending(box => box[1]).ToList();
+
+        int res = 0;
+        foreach(var box in boxList)
+        {
+            if(box[0] <= truckSize)
+            {
+                res += box[0] * box[1];
+                truckSize -= box[0];
+            }
+            else
+            {
+                res += truckSize * box[1];
+                break;
+            }
+        }
+
+        return res;
+    }
+}
