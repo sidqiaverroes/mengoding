@@ -1,55 +1,6 @@
 //leetcode 1971. Find if Path Exists in Graph
 
 public class Solution {
-    // public bool ValidPath(int n, int[][] edges, int source, int destination) {
-    //     if(n == 1)
-    //     {
-    //         if(source == 0 && destination == 0) return true;
-    //     }
-
-    //     bool res = false;
-
-    //     res = res || FindPath(edges, source, destination);
-
-    //     return res;
-    // }
-
-    // private bool FindPath(int[][] edges, int source, int destination)
-    // {
-    //     if(edges.Length == 0) return false;
-    //     bool res = false;
-
-    //     foreach(var edge in edges)
-    //     {
-    //         if(edge[0] < 0 || edge[1] < 0) continue;
-
-    //         int x = edge[0];
-    //         int y = edge[1];
-    //         if(x == source)
-    //         {
-    //             if(y == destination) return true;
-    //             else
-    //             {
-    //                 edge[1] = -1;
-    //                 res = res || FindPath(edges, y, destination);
-    //                 if(res) break;
-    //             }
-    //         }
-    //         else if(y == source)
-    //         {
-    //             if(x == destination) return true;
-    //             else
-    //             {
-    //                 edge[0] = -1;
-    //                 res = res || FindPath(edges, x, destination);
-    //                 if(res) break;
-    //             }
-    //         }
-    //     }
-
-    //     return res;
-    // }
-
     public bool ValidPath(int n, int[][] edges, int source, int destination) {
         if(source == destination) return true;
 
@@ -110,6 +61,54 @@ public class Solution {
 
         return dict;
     }
+    // public bool ValidPath(int n, int[][] edges, int source, int destination) {
+    //     if(n == 1)
+    //     {
+    //         if(source == 0 && destination == 0) return true;
+    //     }
+
+    //     bool res = false;
+
+    //     res = res || FindPath(edges, source, destination);
+
+    //     return res;
+    // }
+
+    // private bool FindPath(int[][] edges, int source, int destination)
+    // {
+    //     if(edges.Length == 0) return false;
+    //     bool res = false;
+
+    //     foreach(var edge in edges)
+    //     {
+    //         if(edge[0] < 0 || edge[1] < 0) continue;
+
+    //         int x = edge[0];
+    //         int y = edge[1];
+    //         if(x == source)
+    //         {
+    //             if(y == destination) return true;
+    //             else
+    //             {
+    //                 edge[1] = -1;
+    //                 res = res || FindPath(edges, y, destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //         else if(y == source)
+    //         {
+    //             if(x == destination) return true;
+    //             else
+    //             {
+    //                 edge[0] = -1;
+    //                 res = res || FindPath(edges, x, destination);
+    //                 if(res) break;
+    //             }
+    //         }
+    //     }
+
+    //     return res;
+    // }
 
     // public bool ValidPath(int n, int[][] edges, int source, int destination) {
     //     if(n == 1)
