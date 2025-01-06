@@ -11,9 +11,8 @@ public class Solution {
         {
             if(intervals[i][0] <= temp[1]) //the i-th intervals is overlapping with temp
             {
-                int first = temp[0];
-                int second = intervals[i][1] > temp[1] ? intervals[i][1] : temp[1];
-                temp = [first, second];
+                int end = intervals[i][1] > temp[1] ? intervals[i][1] : temp[1];
+                temp[1] = end;
             }
             else // if not add temp and assign value of i-th intervals
             {
