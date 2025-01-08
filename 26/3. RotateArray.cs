@@ -8,25 +8,19 @@ public class Solution {
         
         List<int> numsList = new List<int>(nums);
 
-        int l = 0;
-        int r = nums.Length-1;
+        int i = 0;
 
         int index1 = nums.Length - mod;
-        int index2 = index1 - 1;
 
-        while(l <= r)
+        while(i < nums.Length)
         {
-            nums[l] = numsList[index1];
-            nums[r] = numsList[index2];
+            nums[i] = numsList[index1];
             
             if(index1 == nums.Length-1) index1 = -1;
-            if(index2 == 0) index2 = nums.Length;
 
             index1++;
-            index2--;
 
-            l++;
-            r--;
+            i++;
         }
     }
 }
