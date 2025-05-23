@@ -1,0 +1,28 @@
+//3068. Find the Maximum Sum of Node Values
+//23 May 2025
+
+public class Solution {
+    public long MaximumValueSum(int[] nums, int k, int[][] edges) {
+        long totalSum = 0;
+        int xorBenefitCount = 0;
+        int minLoss = int.MaxValue;
+
+        foreach (int num in nums) {
+            int xorValue = num ^ k;
+            totalSum += Math.Max(num, xorValue);
+
+            if (xorValue > num) {
+                xorBenefitCount++;
+                minLoss = Math.Min(minLoss, xorValue - num);
+            } else {
+                minLoss = Math.Min(minLoss, num - xorValue);
+            }
+        }
+
+        if (xorBenefitCount % 2 == 1) {
+            totalSum -= minLoss;
+        }
+
+        return totalSum;
+    }
+}
